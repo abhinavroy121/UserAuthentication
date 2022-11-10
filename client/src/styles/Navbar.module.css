@@ -1,15 +1,14 @@
 .navbar {
-    width: 100%;
-    display:flex;
-    justify-content: space-around;
-    background-color: lightblue;
-    padding: 10px;
-  
-    font-family: "Helvetica Neue",Helvetica,Arial;
-   
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  background-color: lightblue;
+  padding: 10px;
+
+  font-family: "Helvetica Neue", Helvetica, Arial;
 }
-a{
-    cursor: pointer;
-    text-decoration: none;
-    color: black;
+a {
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
 }

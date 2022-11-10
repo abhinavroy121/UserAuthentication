@@ -1,10 +1,11 @@
-#justforboxshadow{
-    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
-    padding:20px;
+#justforboxshadow {
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
+    rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+  padding: 20px;
 }
 #radiobuttonhere {
-   text-align:center;
-   display:flex;
-   justify-content:center;
-   gap:10px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
 }

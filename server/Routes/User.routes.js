@@ -20,12 +20,7 @@ userRouter.post("/login", loginPost);
 // Route for the protected routes
 
 userRouter.get("/protected", passport.authenticate("jwt", {session:false}), (req,res)=> {
-
-//   res.cookie('jwt_token', res.headers. {
-//     httpOnly: true,
-//     maxAge: 1 * 60 * 60 * 1000 // 1 day
-// })
-
+ // sending respond to the protected routes with user details
   res.status(200).send({
        success:true,
        user: {
