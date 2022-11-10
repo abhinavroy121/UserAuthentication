@@ -21,11 +21,11 @@ app.use(cookieParser())
 app.use("/user", userRouter);
 
 app.get("/", (req, res) => {
-    res.cookie(  "home", "home",{
+    // res.cookie(  "home", "home",{
     
-      expires : new Date(Date.now() + 100000),
-      httpOnly : true
-    })
+    //   expires : new Date(Date.now() + 100000),
+    //   httpOnly : true
+    // })
   res.send("<h1>Welcome to User Authentication</h1>");
 });
 

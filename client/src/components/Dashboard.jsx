@@ -7,8 +7,9 @@ const Dashboard = () => {
 
   const navigate = useNavigate()
  const [data,setdata] = useState({})
+ const token = localStorage.getItem('token-jwt')
   useEffect(() => {
-    const token = localStorage.getItem('token-jwt')
+    
       axios.get('http://localhost:8080/user/protected', {
         headers: {
         Authorization: token
@@ -27,7 +28,8 @@ const Dashboard = () => {
     <div className={styles.main}>
    
       <div className={styles.container}>
-          <p style={{marginRight:"-550px"}}>{data.time.toString().split("-")[0]} / {data.time.toString().split("-")[1]}</p>
+        <p style={{marginRight:"-500px"}}>{data.time}</p>
+       {/* { token?  <p style={{marginRight:"-550px"}}>{data.time[0]}{data.time[1]}{data.time[2]}{data.time[3]} / {data.time[4]}{data.time[5]}</p>: <p>here</p>} */}
       <div className={styles.image}>
         <img src={profile} alt="" />
       </div>

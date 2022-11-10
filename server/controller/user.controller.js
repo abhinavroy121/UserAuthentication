@@ -1,7 +1,7 @@
 const User = require("../model/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const cookieParser = require('cookie-parser')
+
 // signup  controller  - Post method
 const signupPost =async (req, res) => {
     const { username, name, password, email, about } = req.body;
@@ -51,10 +51,10 @@ const loginPost = async (req, res) => {
         const token =  jwt.sign(payload, "string", { expiresIn: "1d" });
             
         
-        res.cookie("jwtoken", token, {
-            expires: new Date(Date.now() + 7200000),
-            httpOnly: true
-         })
+      //   res.cookie('jwt_token', token, {
+      //     httpOnly: true,
+      //     maxAge: 1 * 60 * 60 * 1000 // 1 day
+      // })
         return res.status(200).send({ 
           success:true, 
           message: "Login successful",
@@ -76,4 +76,6 @@ const loginPost = async (req, res) => {
 
 
 
-module.exports = {signupPost, loginPost };
+
+
+module.exports = {signupPost, loginPost  };
