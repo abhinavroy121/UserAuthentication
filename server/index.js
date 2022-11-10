@@ -8,7 +8,7 @@ const passport = require("passport");
 const cookieParser = require('cookie-parser')
 
 app.use(cors());
-const PORT = 8080 || process.env.PORT;
+const PORT =  process.env.PORT || 8080;
 dotenv.config();
 app.use(express.json());
 app.use(express.urlencoded({extended:true}))

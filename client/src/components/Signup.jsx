@@ -45,7 +45,7 @@ export const Signup = () => {
         ...values 
     }
     console.log(payload)
-    axios.post("http://localhost:8080/user/signup",payload)
+    axios.post("https://safe-waters-11227.herokuapp.com/user/signup",payload)
     .then((res)=>{
         console.log(res)
         sete(true)

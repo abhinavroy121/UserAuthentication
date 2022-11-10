@@ -10,7 +10,7 @@ const Dashboard = () => {
  const token = localStorage.getItem('token-jwt')
   useEffect(() => {
     
-      axios.get('http://localhost:8080/user/protected', {
+      axios.get('https://safe-waters-11227.herokuapp.com/user/protected', {
         headers: {
         Authorization: token
       }})

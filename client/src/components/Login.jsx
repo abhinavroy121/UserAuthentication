@@ -24,7 +24,7 @@ export const Login = () => {
 
     useEffect(() => {
     const token = localStorage.getItem('token-jwt')
-      axios.get('http://localhost:8080/user/protected', {
+      axios.get('https://safe-waters-11227.herokuapp.com/user/protected', {
         headers: {
         Authorization: token
       }})
@@ -55,7 +55,7 @@ export const Login = () => {
         //  console.log(payload.email.length)
        }
        else if(payload.email.length > 0 && payload.password.length > 0) {
-        axios.post("http://localhost:8080/user/login",payload)
+        axios.post("https://safe-waters-11227.herokuapp.com/user/login",payload)
         .then((response) => {
             
             if(response.data.message !=='user not found'){
