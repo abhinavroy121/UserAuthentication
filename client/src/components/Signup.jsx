@@ -11,14 +11,26 @@ import axios from 'axios'
 import {NavLink, useNavigate} from "react-router-dom"
 
 export const Signup = () => {
-  const [name,setname] = useState("")
-  const [email,setemail] = useState("")
-  const [username,setusername] = useState("")
-  const [password,setpassword] = useState("")
+  const initState = {
+    name: "",
+    email: "",
+    username: "",
+    password: "",
+    about: ""
+  }
+  const [values,setvalues] = useState(initState)
   const [gender,setgender]= useState("")
   const [e,sete] = useState(true)
   const [open, setOpen] = React.useState(false);
  const navigate = useNavigate()
+
+  const handleChange = (e) => {
+      setvalues({
+        ...values,
+       [ e.target.name]: e.target.value
+      })
+  }
+  
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -30,11 +42,7 @@ export const Signup = () => {
 
   const handleSubmit = ()=>{
     let payload = {
-        name,
-        email,
-        username,
-        password,
-        gender
+        ...values 
     }
     console.log(payload)
     axios.post("http://localhost:8080/user/signup",payload)
@@ -42,6 +50,8 @@ export const Signup = () => {
         console.log(res)
         sete(true)
         setOpen(true)
+        setvalues(initState)
+        localStorage.removeItem('token-jwt')
         setTimeout(()=>{
           navigate("/login")
         },1000)
@@ -49,6 +59,7 @@ export const Signup = () => {
     .catch((error) => {
       sete(false)
      })
+   
   }
 
   return (
@@ -66,7 +77,7 @@ export const Signup = () => {
         <h2>Create Your Account</h2>
 
         <TextField 
-        onChange={(e)=>setname(e.target.value)}
+        onChange={(e)=>handleChange(e)}
        margin="normal"
        required
        fullWidth
@@ -74,7 +85,7 @@ export const Signup = () => {
        label="Name"
      />
      <TextField 
-     onChange={(e)=>setemail(e.target.value)}
+       onChange={(e)=>handleChange(e)}
        margin="normal"
        required
        fullWidth
@@ -82,7 +93,7 @@ export const Signup = () => {
        label="Email Address"
      />
       <TextField 
-      onChange={(e)=>setusername(e.target.value)}
+        onChange={(e)=>handleChange(e)}
        margin="normal"
        required
        fullWidth
@@ -90,7 +101,7 @@ export const Signup = () => {
        label="Username"
      />
         <TextField 
-        onChange={(e)=>setpassword(e.target.value)}
+          onChange={(e)=>handleChange(e)}
           margin="normal"
           required
           fullWidth
@@ -98,10 +109,19 @@ export const Signup = () => {
           label="Password"
           name="password"
         />
+         <TextField 
+            onChange={(e)=>handleChange(e)}
+          margin="normal"
+          required
+          fullWidth
+          id="make-year"
+          label="About"
+          name="about"
+        />
      <div id={style.radiobuttonhere} >
         <br/>
-     <input  type="radio" value="male" name="gender" onChange={()=>{setgender("male")}} /> Male
-        <input  type="radio" value="female" name="gender" onChange={()=>{setgender("female")}}/> Female
+     <input  type="radio" value="male" name="gender"      onChange={()=>setgender("male")} /> Male
+        <input  type="radio" value="female" name="gender"      onChange={()=>setgender("female")}/> Female
      </div>
           <Button
           onClick={handleSubmit}

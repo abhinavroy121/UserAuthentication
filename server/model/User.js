@@ -5,9 +5,8 @@ const Schema = mongoose.Schema({
     name: {type:String, required:true},
     password: {type:String, required:true}, 
     email: {type:String, required:true, unique: true },
-    gender: String,
-    about: String
-})
+    about: String,
+},{timestamps: true})
 
 const UserAuth = mongoose.model('User',Schema);
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Link from "@mui/material/Link";
@@ -20,6 +20,24 @@ export const Login = () => {
     const [flag,setflag] = useState(true)
 
     const navigate = useNavigate()
+
+
+    useEffect(() => {
+    const token = localStorage.getItem('token-jwt')
+      axios.get('http://localhost:8080/user/protected', {
+        headers: {
+        Authorization: token
+      }})
+      .then((res)=>{
+          console.log(res)
+          navigate("/")
+      })
+      .catch((err) => {
+        console.log(err)
+        navigate("/login")
+      })
+  },[])
+
     const handleClose = (event, reason) => {
       if (reason === 'clickaway') {
         return;
@@ -40,17 +58,14 @@ export const Login = () => {
         axios.post("http://localhost:8080/user/login",payload)
         .then((response) => {
             
-            if(response.data.message !=='user not registered'){
+            if(response.data.message !=='user not found'){
                 setuser(response.data)
                 console.log(response.data)
-                localStorage.setItem("fitnesspal",JSON.stringify(response.data))
+                localStorage.setItem("token-jwt",response.data.token)
                 sete(true)
                 setOpen(true)
-                setflag(true)
-            
-                setTimeout(()=>{
+                setflag(true) 
                   navigate("/")
-                },1000)
             }
             else{
                 sete(false)
